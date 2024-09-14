@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embed Website</title>
-</head>
-<body>
-    <h1>Embedded Website Example</h1>
-    <iframe src="https://discord.com/" width="100%" height="600px" frameborder="0"></iframe>
-</body>
-</html>
+import requests
+from bs4 import BeautifulSoup
+
+# Make a request to the website
+url = 'https://discord.com/'
+response = requests.get(url)
+
+# Parse the HTML content
+soup = BeautifulSoup(response.content, 'html.parser')
+
+# Extract specific content (for example, all paragraphs)
+paragraphs = soup.find_all('p')
+
+# Print or save the extracted content
+for p in paragraphs:
+    print(p.text)
